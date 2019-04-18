@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    
+    <div id="app">
+        <button v-on:mousedown="showButton">showButton</button>
+        <p>{{data}}</p>
+    </div>
+
+    <script>
+        window.onload = function () {
+            let app = new Vue({
+                el: '#app',
+                data: {
+                    data: ''
+                },
+                methods: {
+                    showButton: function (e) {
+                        let showDate = confirm("Показать дату?");
+                        if (showDate) {
+                            this.data = Date(Date.now()).toString();
+                        }
+                        else {
+                            var button = 'Неизвестно';
+                            if (e.button === 0) {
+                                button = 'Левая';
+                            } else if (e.button === 1) {
+                                button = 'Средняя';
+                            } else if (e.button === 2) {
+                                button = 'Правая';
+                            }
+                            this.data = button + ' кнопка мыши нажата.\n';
+                        }
+                    }
+                },
+            })
+        }
+
+    </script>
+
+</body>
+</html>
