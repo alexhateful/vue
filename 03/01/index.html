@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    
+    <div id="app">
+        <textarea v-model="data" name="" id="" cols="30" rows="10"></textarea>
+        <br>
+        <select v-model="col" name="" id="">
+            <option v-for="color in colors">{{ color }}</option>
+        </select>
+        <br>
+        <button v-on:click="acceptButton">Accept</button>
+        <br>
+        <p class="text" v-text="copyText"></p>
+    </div>
+
+    <script>
+        
+        window.onload = function () {
+            let app = new Vue({
+                el: '#app',
+                data: {
+                    data: '',
+                    copyText: '',
+                    colors: [
+                        "red",
+                        "green",
+                        "blue"
+                    ],
+                    col: ''
+                },
+                methods: {
+                    acceptButton: function () {
+                        this.copyText = this.data;
+                        this.data = '';
+                        document.getElementsByClassName("text")[0].style.color = this.col;
+                    }
+                },
+            })
+        }
+
+    </script>
+
+</body>
+</html>
